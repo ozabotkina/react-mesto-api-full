@@ -1,0 +1,19 @@
+.edit-button {
+  border: 1px solid white;
+  width: 24px;
+  height: 24px;
+  background-color: black;
+  background-image: url(../../images/pencil.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: auto auto auto 18px;
+  position: relative;
+}
+
+@media screen and (max-width: 680px) {
+  .edit-button {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+  }
+}

@@ -1,0 +1,13 @@
+.image-popup__close {
+  align-self: flex-end;
+  margin-left: calc(100% + 8px);
+}
+
+@media screen and (max-width: 680px) {
+  .image-popup__close {
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    margin-left: calc(100% - 20px);
+  }
+}

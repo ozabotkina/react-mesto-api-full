@@ -1,0 +1,8 @@
+.interactive {
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.interactive:hover {
+  opacity: 0.6;
+}

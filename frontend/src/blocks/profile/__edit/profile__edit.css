@@ -1,0 +1,7 @@
+.profile__edit {
+  width: 26px;
+  height: 26px;
+  grid-row: 1;
+  grid-column: 1;
+  margin: auto;
+}

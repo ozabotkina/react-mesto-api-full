@@ -1,0 +1,9 @@
+.element__like-number {
+  align-self: center;
+  margin: 3px auto 0;
+  font-size: 13px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}

@@ -1,0 +1,11 @@
+.signin__link {
+  background-color: black;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: rgba(204, 204, 204, 1);
+  margin: 15px auto 0;
+  text-decoration: none;
+}

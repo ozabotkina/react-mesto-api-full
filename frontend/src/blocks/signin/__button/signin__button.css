@@ -1,0 +1,16 @@
+.signin__button {
+  width: 358px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 2px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #000000;
+  margin: 216px auto auto;
+  cursor: pointer;
+  border: 0;
+}

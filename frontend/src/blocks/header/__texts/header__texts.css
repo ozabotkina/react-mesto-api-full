@@ -1,0 +1,5 @@
+.header__texts {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 46px;
+}

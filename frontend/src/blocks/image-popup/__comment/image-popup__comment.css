@@ -1,0 +1,10 @@
+.image-popup__comment {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  align-self: flex-start;
+  margin: 10px auto 0 0;
+}

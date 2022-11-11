@@ -1,0 +1,5 @@
+.image-popup__wrap {
+  max-width: 75vw;
+  display: flex;
+  flex-direction: column;
+}

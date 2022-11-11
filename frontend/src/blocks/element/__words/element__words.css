@@ -1,0 +1,13 @@
+.element__words {
+  margin: 22px 15px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-content: baseline;
+  width: 246px;
+}
+
+@media screen and (max-width: 680px) {
+  .element__words {
+    margin-left: 21px;
+  }
+}
