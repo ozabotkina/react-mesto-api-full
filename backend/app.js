@@ -10,6 +10,8 @@ const { login, createUser } = require('./controllers/users');
 const tokenAuth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/loggers');
 const regex = require('./utils/const');
+const cors = require('./middlewares/cors');
+const cookieParser = require('cookie-parser');
 
 const { PORT = 3000 } = process.env;
 
@@ -17,11 +19,13 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(requestLogger);
+app.use(cors);
 
 app.post(
   '/signin',

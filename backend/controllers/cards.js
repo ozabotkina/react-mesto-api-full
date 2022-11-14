@@ -5,7 +5,7 @@ const Error403 = require('../errors/Error403');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .then((cards) => res.send({ cards }))
+    .then((cards) => res.send(cards))
     .catch(next);
 };
 
@@ -27,7 +27,7 @@ module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
     .then((card) => {
-      res.send({ card });
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') { return next(new BadRequest('Некорректный запрос')); }
@@ -43,7 +43,7 @@ module.exports.likeCard = (req, res, next) => {
   )
     .then((card) => {
       if (!card) { throw new NotFoundError('Запрашиваемая карточка не найдена'); }
-      res.send({ card });
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') { return next(new BadRequest('Некорректный cardID')); }
@@ -60,7 +60,7 @@ module.exports.dislikeCard = (req, res, next) => {
   )
     .then((card) => {
       if (!card) { throw new NotFoundError('Запрашиваемая карточка не найдена'); }
-      res.send({ card });
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') { return next(new BadRequest('Некорректный cardID')); }

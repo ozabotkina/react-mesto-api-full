@@ -51,7 +51,7 @@ module.exports.currentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) { throw new NotFoundError('Нет пользователя с таким id'); }
-      res.send({ user });
+      res.send(user);
     })
     .catch((err) => {
       next(err);
@@ -108,7 +108,8 @@ module.exports.login = (req, res, next) => {
     })
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, 'something_4_mistery', { expiresIn: '7d' });
-      res.send({ token });
+      // res.send({ token });
+      res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7 }).send({ message: 'токен сохранен в куках', token });
     })
     .catch(next);
 };

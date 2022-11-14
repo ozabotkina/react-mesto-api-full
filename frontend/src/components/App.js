@@ -24,11 +24,14 @@ import { checkToken } from "../utils/Auth.js"
 function App(props) {
   // Все константы
 
-  const [currentUser, setCurrentUser] = React.useState({
+  const [currentUser, setCurrentUser] = React.useState(
+    {
     name: "Оля",
     avatar: "",
     about: "Учусь",
-  });
+  }
+  );
+
   const [cards, setCards] = React.useState([]);
   const [isAddCardOpen, setIsAddCardOpen] = React.useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = React.useState(false);
@@ -45,6 +48,7 @@ function App(props) {
   const [userData, setUserData] = React.useState({ email: "", _id: "" });
 
   // Эффекты
+
   React.useEffect(() => {
     tokenCheck();
   }, [loggedIn]);
@@ -62,12 +66,15 @@ function App(props) {
       .fetchInitialCards()
       .then((cards) => {
         setCards(cards);
+        console.log(cards); 
+
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
+  
   // Все для логина и регистрации
 
   function handleLogin() {
@@ -90,12 +97,14 @@ function App(props) {
   }
 
   function tokenCheck() {
-    const token = localStorage.getItem("token");
+    const token = document.cookie.toString().replace('jwt=','');
     if (token) {
       checkToken(token)
         .then((data) => {
+          console.log(data);
+
           if (data) {
-            setUserData({ email: data.data.email, _id: data.data._id });
+            setUserData({ email: data.email, _id: data._id });
             setLoggedStatus(true);
             props.history.push("/");
           }
@@ -147,7 +156,7 @@ function App(props) {
   };
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
     const action = isLiked
       ? api.deleteLike(card._id)
@@ -179,6 +188,7 @@ function App(props) {
     api
       .addNewCard(link, name)
       .then((newCard) => {
+        console.log(newCard);
         setCards([newCard, ...cards]);
         closeAllPopups();
       })

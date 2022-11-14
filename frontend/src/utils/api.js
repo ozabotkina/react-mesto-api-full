@@ -1,3 +1,5 @@
+import { BASE_URL } from "./constants";
+
 class API {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -14,6 +16,7 @@ class API {
   fetchInitialData() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => {
       return this._checkAnswer(res);
@@ -24,6 +27,7 @@ class API {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         name: name,
         about: about,
@@ -36,21 +40,26 @@ class API {
   fetchInitialCards = () => {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => {
+    console.log(res);
       return this._checkAnswer(res);
-    });
+
+    })
   };
 
   addNewCard = (link, name) => {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: name,
         link: link,
       }),
     }).then((res) => {
+      console.log(res);
       return this._checkAnswer(res);
     });
   };
@@ -58,6 +67,7 @@ class API {
   deleteCard = (cardId) => {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => {
       return this._checkAnswer(res);
@@ -67,6 +77,7 @@ class API {
   createLike = (cardId) => {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => {
       return this._checkAnswer(res);
@@ -76,6 +87,7 @@ class API {
   deleteLike = (cardId) => {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => {
       return this._checkAnswer(res);
@@ -85,6 +97,7 @@ class API {
   changeAvatar = (avatarlink) => {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         avatar: avatarlink,
@@ -96,9 +109,14 @@ class API {
 }
 
 export const api = new API({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-46",
+  // baseUrl: "https://mesto.nomoreparties.co/v1/cohort-46",
+  // headers: {
+  //   authorization: "24287173-ba31-4a1d-8c0b-4b3b6920eaaf",
+  //   "Content-Type": "application/json",
+    baseUrl: BASE_URL,
   headers: {
-    authorization: "24287173-ba31-4a1d-8c0b-4b3b6920eaaf",
+    // authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
+
   },
 });

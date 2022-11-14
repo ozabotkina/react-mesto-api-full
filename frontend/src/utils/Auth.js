@@ -1,4 +1,5 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+// export const BASE_URL = "https://auth.nomoreparties.co";
+import { BASE_URL } from "./constants";
 
 
 function checkAnswer(res) {
@@ -32,6 +33,7 @@ export const authorize = (email, password) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify({
       password: password,
       email: email,
@@ -40,7 +42,7 @@ export const authorize = (email, password) => {
   .then((res) => {
     return checkAnswer(res)})
     .then((data) => {
-      localStorage.setItem("token", data.token);
+      // localStorage.setItem("token", data.token);
       return data;
     })
 };
@@ -51,8 +53,9 @@ export const checkToken = (token) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
+    credentials:'include',
+
   })
   .then((res) => {
     return checkAnswer(res)})
