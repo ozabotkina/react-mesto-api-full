@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET, NODE_ENV } = process.env;
 
 const Error401 = require('../errors/Error401');
 const Error403 = require('../errors/Error403');
@@ -15,7 +15,7 @@ const tokenAuth = (req, res, next) => {
     }
     let payload;
     // eslint-disable-next-line prefer-const
-    payload = jwt.verify(token, JWT_SECRET);
+    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
     User.findOne({ _id: payload._id }).then((user) => { if (!user) { throw new Error403({ message: 'Нет прав доступа' }); } });
     req.user = { _id: payload };
   } catch (err) {

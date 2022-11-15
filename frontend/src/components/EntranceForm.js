@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch, Link, BrowserRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function EntranceForm(props) {
   return (
