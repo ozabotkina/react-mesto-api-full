@@ -1,1 +1,1 @@
-export const BASE_URL = "api.ozabotkina.nomoredomains.icu";
+export const BASE_URL = "http://api.ozabotkina.nomoredomains.icu";

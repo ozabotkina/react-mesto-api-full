@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const routerUsers = require('./routes/users');
 const routerCards = require('./routes/cards');
 const NotFoundError = require('./errors/NotFoundError');
@@ -11,7 +12,6 @@ const tokenAuth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/loggers');
 const regex = require('./utils/const');
 const cors = require('./middlewares/cors');
-const cookieParser = require('cookie-parser');
 
 const { PORT = 3000 } = process.env;
 
