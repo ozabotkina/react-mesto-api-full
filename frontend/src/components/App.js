@@ -51,6 +51,7 @@ function App(props) {
 
   React.useEffect(() => {
     tokenCheck();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
   React.useEffect(() => {

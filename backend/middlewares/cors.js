@@ -3,6 +3,9 @@ const allowedCors = [
   'localhost:3001',
   'http://localhost:3000',
   'http://localhost:3001',
+  'ozabotkina.nomoredomains.icu',
+  'http://ozabotkina.nomoredomains.icu',
+  'https://ozabotkina.nomoredomains.icu',
 ];
 
 // eslint-disable-next-line consistent-return
