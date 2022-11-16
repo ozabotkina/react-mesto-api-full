@@ -9,4 +9,4 @@ Backend https://api.ozabotkina.nomoredomains.icu
 
 
 репозиторий на github 
-git@github.com:yandex-praktikum/react-mesto-api-full.git
+git@github.com:ozabotkina/react-mesto-api-full.git
