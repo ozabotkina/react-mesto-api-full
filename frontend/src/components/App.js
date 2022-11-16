@@ -67,7 +67,6 @@ function App(props) {
       .fetchInitialCards()
       .then((cards) => {
         setCards(cards);
-        console.log(cards); 
 
       })
       .catch((err) => {
@@ -102,7 +101,6 @@ function App(props) {
     if (token) {
       checkToken(token)
         .then((data) => {
-          console.log(data);
 
           if (data) {
             setUserData({ email: data.email, _id: data._id });
@@ -189,7 +187,6 @@ function App(props) {
     api
       .addNewCard(link, name)
       .then((newCard) => {
-        console.log(newCard);
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
