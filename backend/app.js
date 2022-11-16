@@ -1,10 +1,9 @@
-require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 
 const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
 const routerUsers = require('./routes/users');
 const routerCards = require('./routes/cards');
 const NotFoundError = require('./errors/NotFoundError');
@@ -12,6 +11,7 @@ const { login, createUser } = require('./controllers/users');
 const tokenAuth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/loggers');
 const regex = require('./utils/const');
+
 const cors = require('./middlewares/cors');
 
 const { PORT = 3000 } = process.env;
@@ -45,7 +45,6 @@ app.post(
     body: Joi.object().keys({
       name: Joi.string().min(2).max(30),
       about: Joi.string().min(2).max(30),
-      // eslint-disable-next-line no-useless-escape
       avatar: Joi.string().uri().pattern(regex),
       email: Joi.string().required().email(),
       password: Joi.string().required(),
@@ -71,6 +70,7 @@ app.use((err, req, res, next) => {
     .send({
       message: statusCode === 500
         ? 'На сервере произошла ошибка'
+        // ? message
         : message,
     });
   next();
