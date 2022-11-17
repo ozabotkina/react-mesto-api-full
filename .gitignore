@@ -6,7 +6,11 @@ npm
 .npm
 .env
 *.env
-
+**/.env
+**.env
+./backend/.env
+*env
+react-mesto-api-full/backend/.env
 
 # Optional REPL history
 .DS_Store

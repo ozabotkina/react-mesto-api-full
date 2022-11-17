@@ -98,6 +98,7 @@ function App(props) {
 
   function tokenCheck() {
     const token = document.cookie.toString().replace('jwt=','');
+    console.log(token);
     if (token) {
       checkToken(token)
         .then((data) => {

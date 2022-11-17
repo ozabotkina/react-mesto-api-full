@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -62,8 +63,12 @@ app.post(
 app.use('/users', tokenAuth, routerUsers);
 app.use('/cards', tokenAuth, routerCards);
 
-app.use('/*', () => {
+app.use('/*', tokenAuth, () => {
   throw new NotFoundError('Неправильный путь');
+});
+
+app.get('/signout', (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Выход' });
 });
 
 app.use(errorLogger);

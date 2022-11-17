@@ -1,4 +1,3 @@
-// export const BASE_URL = "https://auth.nomoreparties.co";
 import { BASE_URL } from "./constants";
 
 
@@ -17,6 +16,8 @@ export const register = (email, password) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
+    credentials: 'include',
+
     body: JSON.stringify({
       password: password,
       email: email,
@@ -58,7 +59,22 @@ export const checkToken = (token) => {
 
   })
   .then((res) => {
-    console.log(res);
+    console.log(res.json);
     return checkAnswer(res)})
-    .then((data) => data);
+    .then((data) => { 
+      console.log(data);
+      return data});
 };
+
+export const signout = () => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    })
+  .then((res) => {
+    return checkAnswer(res)})
+    }
