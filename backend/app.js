@@ -15,6 +15,8 @@ const regex = require('./utils/const');
 
 const cors = require('./middlewares/cors');
 
+// const myerrors = require('./middlewares/errors');
+
 const { PORT = 3000 } = process.env;
 
 const app = express();
@@ -62,18 +64,19 @@ app.post(
 
 app.use('/users', tokenAuth, routerUsers);
 app.use('/cards', tokenAuth, routerCards);
+app.get('/signout', (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Выход' });
+});
 
 app.use('/*', tokenAuth, () => {
   throw new NotFoundError('Неправильный путь');
 });
 
-app.get('/signout', (req, res) => {
-  res.clearCookie('jwt').send({ message: 'Выход' });
-});
-
 app.use(errorLogger);
 
 app.use(errors());
+// app.use(myerrors);
+
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
   res

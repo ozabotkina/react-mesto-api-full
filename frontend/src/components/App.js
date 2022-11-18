@@ -19,7 +19,7 @@ import { api } from "../utils/api.js";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
-import { checkToken } from "../utils/Auth.js"
+import { checkToken, signout } from "../utils/Auth.js"
 
 function App(props) {
   // Все константы
@@ -91,18 +91,16 @@ function App(props) {
     setInfoTooltipOpen(true);
   }
 
-  function handleLogout() {
-    setLoggedStatus(false);
-    localStorage.removeItem("token");
+  function handleLogout(){
+    signout()
+    .then (() => setLoggedStatus(false));
   }
 
   function tokenCheck() {
-    const token = document.cookie.toString().replace('jwt=','');
-    console.log(token);
-    if (token) {
-      checkToken(token)
+    // const token = document.cookie.toString().replace('jwt=','');
+    // console.log(token);
+      checkToken()
         .then((data) => {
-
           if (data) {
             setUserData({ email: data.email, _id: data._id });
             setLoggedStatus(true);
@@ -111,7 +109,7 @@ function App(props) {
         })
         .catch((err) => console.log(err))
     }
-  }
+  
 
   // Обработчики попапов и апдейтов контента
 

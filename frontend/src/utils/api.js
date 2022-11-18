@@ -43,7 +43,6 @@ class API {
       credentials: 'include',
       headers: this._headers,
     }).then((res) => {
-    console.log(res);
       return this._checkAnswer(res);
 
     })
@@ -59,7 +58,6 @@ class API {
         link: link,
       }),
     }).then((res) => {
-      console.log(res);
       return this._checkAnswer(res);
     });
   };
@@ -109,13 +107,8 @@ class API {
 }
 
 export const api = new API({
-  // baseUrl: "https://mesto.nomoreparties.co/v1/cohort-46",
-  // headers: {
-  //   authorization: "24287173-ba31-4a1d-8c0b-4b3b6920eaaf",
-  //   "Content-Type": "application/json",
     baseUrl: BASE_URL,
   headers: {
-    // authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
 
   },
