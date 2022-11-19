@@ -71,6 +71,7 @@ export const signout = () => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
+    withCredentials: true,
     credentials: "include",
     })
   .then((res) => {

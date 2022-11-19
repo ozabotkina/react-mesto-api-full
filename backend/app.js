@@ -65,7 +65,13 @@ app.post(
 app.use('/users', tokenAuth, routerUsers);
 app.use('/cards', tokenAuth, routerCards);
 app.get('/signout', (req, res) => {
-  res.clearCookie('jwt').send({ message: 'Выход' });
+  // res.clearCookie('jwt').send({ message: 'Выход' });
+  res.cookie('jwt', '', {
+    maxAge: 3600000 * 24 * 7,
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+  }).send({ message: 'токен удален' });
 });
 
 app.use('/*', tokenAuth, () => {
