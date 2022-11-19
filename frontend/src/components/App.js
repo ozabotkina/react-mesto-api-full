@@ -79,6 +79,24 @@ function App(props) {
 
   function handleLogin() {
     setLoggedStatus(true);
+    api
+    .fetchInitialData()
+    .then((res) => {
+      console.log('в логине')
+      setCurrentUser(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  api
+    .fetchInitialCards()
+    .then((cards) => {
+      setCards(cards);
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   function showSuccess() {
@@ -93,7 +111,8 @@ function App(props) {
 
   function handleLogout(){
     signout()
-    .then (() => setLoggedStatus(false));
+    .then (() => setLoggedStatus(false))
+    .catch((err) => console.log(err));
   }
 
   function tokenCheck() {
