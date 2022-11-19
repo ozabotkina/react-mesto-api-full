@@ -9,6 +9,7 @@ npm
 **/.env
 **.env
 ./backend/.env
+./backend/envtest.js
 *env
 react-mesto-api-full/backend/.env
 

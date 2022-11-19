@@ -82,7 +82,6 @@ function App(props) {
     api
     .fetchInitialData()
     .then((res) => {
-      console.log('в логине')
       setCurrentUser(res);
     })
     .catch((err) => {
